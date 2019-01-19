@@ -1,5 +1,5 @@
 const path = require('path'),
-    routes = require('./routes'),
+    routes = require('../routes/routes'),
     exphbs = require('express-handlebars'),
     express = require('express'),
     bodyParser = require('body-parser'),
@@ -21,6 +21,7 @@ module.exports = (app) => {
 if ('development' === app.get('env')) {
     app.use(errorHandler);
   }
+    routes(app);
     return app;
 };
 
