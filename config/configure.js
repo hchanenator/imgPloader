@@ -27,7 +27,9 @@ if ('development' === app.get('env')) {
       defaultLayout: 'main',
       layoutsDir: `${app.get('views')}/layouts`,
       partialsDir: [`${app.get('views')}/partials`]
-    });
+    }).engine);
+
+    app.set('view engine', 'hanldebars');
 
     return app;
 };

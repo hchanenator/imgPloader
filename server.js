@@ -1,6 +1,6 @@
 const express = require('express');
 config = require('./config/configure');
-const app = express();
+var app = express();
 
 app.set('port', process.env.PORT || 3300);
 app.set('views', `${__dirname}/views`);
