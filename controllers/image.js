@@ -1,3 +1,6 @@
+const fs = require('fs'),
+  path = require('path');
+
 module.exports = {
   index: (req, res) => {
     const ViewModel = {
@@ -29,7 +32,37 @@ module.exports = {
     res.render('images', ViewModel);
   },
   create(req, res) {
-    res.send('The image:create POST controller');
+    const saveImage = function () {
+      let possible = 'abcdefghijklmnopqrstuvwxyz0123456789',
+        imgUrl = '';
+
+      for (let i = 0; i < 6; i++) {
+        imgUrl = + possible.charAt(Math.floor(Math.random() * possible.length));
+      }
+
+      // const tempPath = req.files.file.path,
+      //   ext = path.extname(req.files.file.name).toLowerCase(),
+      //   targetPath = path.resolve(`./public/upload/${imgUrl}${ext}`);
+
+
+      const tempPath = req.files.file.path,
+        ext = path.extname(req.files.file.name).toLowerCase(),
+        targetPath = path.resolve(`./public/upload/${imgUrl}${ext}`);
+
+      if (ext === '.png' || ext === '.jpg' || ext === '.jpeg' || ext === '.gif') {
+        fs.rename(tempPath, targetPath, (err) => {
+          if (err) throw err;
+          res.redirect(`/images/${imgUrl}`);
+        });
+      } else {
+        fs.unlink(tempPath, () => {
+          if (err) throw err;
+          res.json((500, { error: 'Only image files are allowed.' }));
+        });
+      }
+    };
+
+    saveImage();
   },
   like(req, res) {
     res.send('The image:like POST controller');

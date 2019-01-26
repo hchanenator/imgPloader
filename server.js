@@ -11,13 +11,13 @@ app = config(app);
 //   res.send('Hello world!');
 // });
 
-app.use('/get_data', (req, res) => {
-  console.log('Hello world!');
-  return next();
-}, (err, req, res, next) => {
-  console.log('Hello world, again!');
-  return next();
-});
+// app.use('/get_data', (req, res) => {
+//   console.log('Hello world!');
+//   return next();
+// }, (err, req, res, next) => {
+//   console.log('Hello world, again!');
+//   return next();
+// });
 
 app.listen(app.get('port'), () => {
   console.log(`Server up: http://localhost:${app.get('port')}`);
