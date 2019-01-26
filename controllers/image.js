@@ -1,5 +1,5 @@
-const fs = require('fs'),
-  path = require('path');
+var fs = require('fs'),
+      path = require('path');
 
 module.exports = {
   index: (req, res) => {
@@ -32,18 +32,13 @@ module.exports = {
     res.render('images', ViewModel);
   },
   create(req, res) {
-    const saveImage = function () {
-      let possible = 'abcdefghijklmnopqrstuvwxyz0123456789',
+    const saveImage = () => {
+      var possible = 'abcdefghijklmnopqrstuvwxyz0123456789',
         imgUrl = '';
 
-      for (let i = 0; i < 6; i++) {
-        imgUrl = + possible.charAt(Math.floor(Math.random() * possible.length));
+      for (var i = 0; i < 6; i++) {
+        imgUrl += possible.charAt(Math.floor(Math.random() * possible.length));
       }
-
-      // const tempPath = req.files.file.path,
-      //   ext = path.extname(req.files.file.name).toLowerCase(),
-      //   targetPath = path.resolve(`./public/upload/${imgUrl}${ext}`);
-
 
       const tempPath = req.files.file.path,
         ext = path.extname(req.files.file.name).toLowerCase(),

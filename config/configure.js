@@ -28,12 +28,10 @@ module.exports = (app) => {
   }).engine);
   app.set('view engine', 'handlebars');
  
-  routes(app);  // moving the routes to the routes folder
-  
-  app.use(multer({ dest: path.join(__dirname, 'public/upload/temp') }));
+  app.use(multer({ dest: path.join(__dirname, '../public/upload/temp') }));
   app.use(methodOverride());
   app.use(cookieParser('some-secret-value-here'));
-  routes(app);
+  routes(app);  // moving the routes to the routes folder
   
   
   app.use('/public/', express.static(path.join(__dirname, '../public')));
@@ -41,8 +39,6 @@ module.exports = (app) => {
   if ('development' === app.get('env')) {
     app.use(errorHandler());
   }
-
-
 
   return app;
 };
