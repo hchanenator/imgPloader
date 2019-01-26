@@ -35,7 +35,7 @@ if ('development' === app.get('env')) {
       }
     }).engine);
 
-    app.set('view engine', 'hanldebars');
+    app.set('view engine', 'handlebars');
 
     return app;
 };
