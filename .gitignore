@@ -81,3 +81,5 @@ typings/
 
 # Temporary swap files
 *.swp
+
+package-lock.json
