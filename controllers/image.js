@@ -1,5 +1,6 @@
 var fs = require('fs'),
-      path = require('path');
+  path = require('path'),
+  sidebar = require('../helpers/sidebar');
 
 module.exports = {
   index: (req, res) => {
@@ -29,7 +30,11 @@ module.exports = {
         timestamp: Date.now()
       }]
     };
-    res.render('images', ViewModel);
+
+    sidebar(ViewModel, (ViewModel) => {
+      res.render('images', ViewModel);
+    });
+
   },
   create(req, res) {
     const saveImage = () => {

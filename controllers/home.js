@@ -1,3 +1,5 @@
+const sidebar = require('../helpers/sidebar');
+
 module.exports = {
   index: (req, res) => {
     const ViewModel = {
@@ -36,6 +38,8 @@ module.exports = {
       }]
     }
 
-    res.render('index', ViewModel);
+    sidebar(ViewModel, (ViewModel) => {
+      res.render('index', ViewModel);
+    });
   }
 };
