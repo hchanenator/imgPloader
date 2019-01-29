@@ -1,6 +1,6 @@
-module.exports = () => {
-    let popular = {
-        let images = [
+module.exports = {
+    popular: function () {
+        var images = [
             {
                 uniqueId: 1,
                 title: 'Sample Image 1',
